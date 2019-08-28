@@ -1,0 +1,5 @@
+raw/*
+indata/*
+*.fits
+*.swo
+*.swp
