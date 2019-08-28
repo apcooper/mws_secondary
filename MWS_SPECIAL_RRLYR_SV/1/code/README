@@ -1,0 +1,22 @@
+MWS_RRLYR
+---------
+Maintained by: Sergey Koposov
+
+We include all the stars from Gaia that were classified as RR Lyrae with mean G
+magnitudes between 14 and 19. Specifically that includes
+
+1) All the stars from Gaia vari_rrlyrae table
+2) All the stars from vari_classifier_result with RR* class
+
+Here is the actual selection:
+
+WITH x as (SELECT vari_classifier_result.source_id
+        FROM gaia_dr2.vari_classifier_result
+        WHERE vari_classifier_result.best_class_name::text ~~ 'RR%'::text
+    UNION
+    SELECT vari_rrlyrae.source_id
+        FROM gaia_dr2.vari_rrlyrae)
+SELECT g.* FROM gaia_dr2.gaia_source as g, x
+       where g.source_id = x.source_id
+       and phot_g_mean_mag between 14 and 19;
+
