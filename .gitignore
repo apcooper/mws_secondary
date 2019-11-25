@@ -2,8 +2,11 @@
 */.ipynb_checkpoints/*
 *-checkpoint.ipynb
 *checkpoint*
+raw/
+indata/
 raw/*
 indata/*
 *.fits
 *.swo
 *.swp
+
